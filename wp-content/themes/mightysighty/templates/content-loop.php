@@ -83,10 +83,11 @@
                 $tab_title = get_sub_field('tab_title');
                 $tab_image = get_sub_field('tab_image');
                 $tab_slug = sanitize_title($tab_title);
+                $count = get_row_index();
             // Do something...
         ?>
         <li class="nav-item">
-          <a class="nav-link " id="<?php echo $tab_slug; ?>-tab" data-toggle="tab" href="#store" role="tab" aria-controls="store" aria-selected="true"><?php echo $tab_title; ?></a>
+          <a class="nav-link <?php echo $count == '1' ? ' active show' : ''; ?>  " id="<?php echo $tab_slug; ?>-tab" data-toggle="tab" href="#store" role="tab" aria-controls="store" aria-selected="true"><?php echo $tab_title; ?></a>
         </li>
         <?php 
             // End loop.
@@ -112,7 +113,7 @@
                 $count = get_row_index();
             // Do something...
         ?>
-            <div class="tab-pane <?php echo $count == '1' ? 'show active' : ''; ?>" id="<?php echo $tab_slug; ?>" role="tabpanel" aria-labelledby="<?php echo $tab_slug; ?>-tab">
+            <div class="tab-pane <?php echo $count == '1' ? ' active' : ''; ?>" id="<?php echo $tab_slug; ?>" role="tabpanel" aria-labelledby="<?php echo $tab_slug; ?>-tab">
               <figure class="mb-0">
                 <img src="<?php echo $tab_image; ?>" alt="">
               </figure>
@@ -457,43 +458,40 @@
       </div>
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item active">
+
+        <?php
+        // Check rows existexists.
+        if( have_rows('testimonial_slides') ):
+
+            // Loop through rows.
+            while( have_rows('testimonial_slides') ) : the_row();
+             // Load sub field value.
+                $testimonial_slide_text = get_sub_field('testimonial_slide_text');
+                $testimonial_slide_logo = get_sub_field('testimonial_slide_logo');
+                $tab_slug = sanitize_title($tab_title);
+                $count = get_row_index();
+            // Do something...
+        ?>
+          <div class="carousel-item  <?php echo $count == '1' ? 'show active' : ''; ?> ">
             <div class="testimonial-text">
               <p class="font-extarablod primary-color" data-aos="fade-up" data-aos-duration="600">
-                “As we look to grow our social media presence and deliver timely <br>
-                content to our audiences across numerous channels, we use <br>
-                MightySighty daily. We’ve been able to catalogue thousands of <br>
-                images and make them available to anyone in the business who <br>
-                needs them at any time.”
+                “<?php echo $testimonial_slide_text; ?>”
               </p>
-              <figure class="mb-0" data-aos="fade-up" data-aos-duration="600"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/testimonial-logo.png" alt="logo"></figure>
+              <figure class="mb-0" data-aos="fade-up" data-aos-duration="600"><img src="<?php echo $testimonial_slide_logo;?>" alt="logo"></figure>
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="testimonial-text">
-              <p class="font-extarablod primary-color" data-aos="fade-up" data-aos-duration="600">
-                “As we look to grow our social media presence and deliver timely <br>
-                content to our audiences across numerous channels, we use <br>
-                MightySighty daily. We’ve been able to catalogue thousands of <br>
-                images and make them available to anyone in the business who <br>
-                needs them at any time.”
-              </p>
-              <figure class="mb-0" data-aos="fade-up" data-aos-duration="600"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/testimonial-logo.png" alt="logo"></figure>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="testimonial-text">
-              <p class="font-extarablod primary-color" data-aos="fade-up" data-aos-duration="600">
-                “As we look to grow our social media presence and deliver timely <br>
-                content to our audiences across numerous channels, we use <br>
-                MightySighty daily. We’ve been able to catalogue thousands of <br>
-                images and make them available to anyone in the business who <br>
-                needs them at any time.”
-              </p>
-              <figure class="mb-0" data-aos="fade-up" data-aos-duration="600"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/testimonial-logo.png" alt="logo"></figure>
-            </div>
-          </div>
+
+          <?php 
+            // End loop.
+            endwhile;
+
+            // No value.
+            else :
+                // Do something...
+            endif;
+            ?>
         </div>
+
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/arror-l.png" alt="arrow">
