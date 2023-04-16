@@ -18,23 +18,49 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-    
-<nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="#"><?php bloginfo('name'); ?></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="#bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <?php
-        wp_nav_menu( array(
-            'theme_location'    => 'primary',
-            'depth'             => 2,
-            'container'         => 'div',
-            'container_class'   => 'collapse navbar-collapse',
-            'container_id'      => 'bs-example-navbar-collapse-1',
-            'menu_class'        => 'nav navbar-nav',
-            'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
-            'walker'            => new WP_Bootstrap_Navwalker(),
-        ) );
-    ?>
-</nav>
+  <!-- ================================ -->
+  <!-- ==========   Header   ========== -->
+  <!-- ================================  -->
+  <header class="w-100 float-left header-con">
+    <div class="wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+            <a class="navbar-brand" href="#">
+                <figure class="mb-0">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-icon.png" alt="logo-icon">
+                </figure>
+            </a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              <span class="navbar-toggler-icon"></span>
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav m-auto">
+                <li class="nav-item active pl-lg-0">
+                  <a class="nav-link p-0 font-semibold p-0" href="#">How it helps</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link p-0 font-semibold" href="#">Options</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link p-0 font-semibold" href="#">FAQs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link p-0 font-semibold" href="#">User guide</a>
+                  </li>
+              </ul>
+              <div class="nav-btn d-flex align-items-center">
+                <div class="login-btn">
+                    <a href="#">Login <i class="fas fa-angle-right"></i></a>
+                </div>
+                <div class="sign-btn generic-btn">
+                    <a href="#">Sign up for Free</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+    </div>
+  </header>
+  <!-- ================================ -->
+  <!-- ==========   Header   ========== -->
+  <!-- ================================  -->
