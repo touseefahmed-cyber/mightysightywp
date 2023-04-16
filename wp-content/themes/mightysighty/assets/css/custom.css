@@ -41,6 +41,16 @@ body{
     margin-bottom: 35px;
     letter-spacing: -0.6px;
 }
+.line-bar::after{
+    content: "";
+    bottom: 4px;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    background: #67d2b9;
+    position: absolute;
+    z-index: -1;
+}
 .banner-txt p {
     max-width: 76%;
     margin-left: 4px;

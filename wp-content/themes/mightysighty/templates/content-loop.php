@@ -4,11 +4,11 @@
         <div class="row">
             <div class="col-lg-6 d-flex align-items-center order-lg-0 order-2">
                 <div class="banner-txt">
-                    <h1 class="font-extarablod primary-color" data-aos="fade-up" data-aos-duration="600">The <span>simple</span> way to manage your digital assets</h1>
-                    <p class="secondary-color font-medium" data-aos="fade-up" data-aos-duration="600">Hassle free storage and management makes accessing and sharing all of your media assets incredibly easy.</p>
+                    <h1 class="font-extarablod primary-color" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('banner_title'); ?></h1>
+                    <p class="secondary-color font-medium" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('banner_caption'); ?></p>
                     <div class="generic-btn">
-                        <a href="#" data-aos="fade-up" data-aos-duration="600">Sign up for FREE</a>
-                        <a href="#" class="transparent-btn" data-aos="fade-up" data-aos-duration="600">Book a demo</a>
+                        <a href="<?php echo get_field('banner_blue_btn_link'); ?>" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('banner_blue_btn_text'); ?></a>
+                        <a href="<?php echo get_field('banner_transparant_btn_link'); ?>" class="transparent-btn" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('banner_transparent_btn_text'); ?></a>
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                   <div class="small-bubble bubble"></div>
                   <div class="medium-bubble bubble"></div>
                     <figure class="mb-0">
-                      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/shop-img.png" alt="shop-img">
+                      <img src="<?php the_field('banner_image'); ?>" alt="shop-img">
                     </figure>
                     <div class="large-bubble bubble"></div>
                   <div class="extra-large-bubble bubble"></div>
@@ -31,28 +31,36 @@
   <!-- LOGO SECTION -->
   <div class="main-logo-sec w-100 float-left">
     <div class="wrapper">
+
+
+
+       
+
+
       <div class="logo-con align-items-center justify-item-center w-100">
+      <?php
+        // Check rows existexists.
+        if( have_rows('image_slider') ):
+
+            // Loop through rows.
+            while( have_rows('image_slider') ) : the_row();
+             // Load sub field value.
+                $sub_value = get_sub_field('individual_image');
+            // Do something...
+        ?>
         <figure class="mb-0" data-aos="fade-up" data-aos-duration="600">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-sec-img1.png">
+          <img src="<?php echo $sub_value;?>">
         </figure>
-        <figure class="mb-0" data-aos="fade-up" data-aos-duration="600">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-sec-img2.png">
-        </figure>
-        <figure class="mb-0" data-aos="fade-up" data-aos-duration="600">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-sec-img3.png">
-        </figure>
-        <figure class="mb-0" data-aos="fade-up" data-aos-duration="600">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-sec-img4.png">
-        </figure>
-        <figure class="mb-0" data-aos="fade-up" data-aos-duration="600">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-sec-img5.png">
-        </figure>
-        <figure class="mb-0" data-aos="fade-up" data-aos-duration="600">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-sec-img6.png">
-        </figure>
-        <figure class="mb-0" data-aos="fade-up" data-aos-duration="600">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-sec-img7.png">
-        </figure>
+        <?php 
+            // End loop.
+            endwhile;
+
+        // No value.
+        else :
+            // Do something...
+        endif;
+        ?>
+
       </div>
     </div>
   </div>
@@ -61,59 +69,71 @@
   <section class="tab-con float-left w-100 text-center">
     <div class="wrapper">
       <div class="tab-con-heading">
-        <h2 class="primary-color font-extarablod" data-aos="fade-up" data-aos-duration="600">Find what you need, when you need it.</h2>
-        <p class="secondary-color font-medium" data-aos="fade-up" data-aos-duration="600">
-          All your assets in one place. Videos, images, documents, logos; in MightySighty you’ll never lose track of what you’ve got.
-        </p>
+        <h2 class="primary-color font-extarablod" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('tab_main_title'); ?></h2>
+        <p class="secondary-color font-medium" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('tab_main_caption'); ?></p>
       </div>
       <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <?php
+        // Check rows existexists.
+        if( have_rows('tab_settings') ):
+
+            // Loop through rows.
+            while( have_rows('tab_settings') ) : the_row();
+             // Load sub field value.
+                $tab_title = get_sub_field('tab_title');
+                $tab_image = get_sub_field('tab_image');
+                $tab_slug = sanitize_title($tab_title);
+            // Do something...
+        ?>
         <li class="nav-item">
-          <a class="nav-link active" id="store-tab" data-toggle="tab" href="#store" role="tab" aria-controls="store" aria-selected="true">Store</a>
+          <a class="nav-link " id="<?php echo $tab_slug; ?>-tab" data-toggle="tab" href="#store" role="tab" aria-controls="store" aria-selected="true"><?php echo $tab_title; ?></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" id="Search-tab" data-toggle="tab" href="#Search" role="tab" aria-controls="Search" aria-selected="false">Search</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="Organise-tab" data-toggle="tab" href="#Organise" role="tab" aria-controls="Organise" aria-selected="false">Organise</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="Share-tab" data-toggle="tab" href="#Share" role="tab" aria-controls="Share" aria-selected="false">Share</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="Collaborate-tab" data-toggle="tab" href="#Collaborate" role="tab" aria-controls="Collaborate" aria-selected="false">Collaborate</a>
-        </li>
+        <?php 
+            // End loop.
+            endwhile;
+
+        // No value.
+        else :
+            // Do something...
+        endif;
+        ?>
       </ul>
       <div class="tab-content position-relative" id="myTabContent" data-aos="fade-up" data-aos-duration="600">
-            <div class="tab-pane show active" id="store" role="tabpanel" aria-labelledby="store-tab">
+      <?php
+        // Check rows existexists.
+        if( have_rows('tab_settings') ):
+
+            // Loop through rows.
+            while( have_rows('tab_settings') ) : the_row();
+             // Load sub field value.
+                $tab_title = get_sub_field('tab_title');
+                $tab_image = get_sub_field('tab_image');
+                $tab_slug = sanitize_title($tab_title);
+                $count = get_row_index();
+            // Do something...
+        ?>
+            <div class="tab-pane <?php echo $count == '1' ? 'show active' : ''; ?>" id="<?php echo $tab_slug; ?>" role="tabpanel" aria-labelledby="<?php echo $tab_slug; ?>-tab">
               <figure class="mb-0">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/tab-img-1.png" alt="">
+                <img src="<?php echo $tab_image; ?>" alt="">
               </figure>
             </div>
-            <div class="tab-pane" id="Search" role="tabpanel" aria-labelledby="Search-tab">
-              <figure class="mb-0">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/tab-img-2.png" alt="">
-              </figure>
-            </div>
-            <div class="tab-pane" id="Organise" role="tabpanel" aria-labelledby="Organise-tab">
-              <figure class="mb-0">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/tab-img-3.png" alt="">
-              </figure>
-            </div>
-            <div class="tab-pane" id="Share" role="tabpanel" aria-labelledby="Share-tab">
-              <figure class="mb-0">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/tab-img-4.png" alt="">
-              </figure>
-            </div>
-            <div class="tab-pane" id="Collaborate" role="tabpanel" aria-labelledby="Collaborate-tab">
-              <figure class="mb-0">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/tab-img-5.png" alt="">
-              </figure>
-          
-            </div>
+            <?php 
+            // End loop.
+            endwhile;
+
+            // No value.
+            else :
+                // Do something...
+            endif;
+            ?>
+
+            <?php if( have_rows('tab_settings') ): ?>
+
             <div class="input-group group-end">
               <a class="btn btnPrevious"><i class="fas fa-angle-left"></i></a>
               <a class="btn btnNext"><i class="fas fa-angle-right"></i></a>
             </div>
+            <?php   endif; ?>
       </div>      
     </div>
   </section>
@@ -124,14 +144,9 @@
     <div class="wrapper2">
         <div class="info-form-con w-100 float-left">
           <div class="section-heading text-center ml-auto mr-auto">
-            <span class="small-heading d-inline-block" data-aos="fade-up" data-aos-duration="600">for business</span>
-            <h2 class="large-heading" data-aos="fade-up" data-aos-duration="600">
-              Flexible and convenient to support anyone
-            </h2>
-            <p class="medium-heading mb-0" data-aos="fade-up" data-aos-duration="600">
-              Enjoy all the benefits that MightySighty brings for FREE, <br>
-              but with flexible enterprise options it can grow as you do.
-            </p>
+            <span class="small-heading d-inline-block" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('info_small_title'); ?></span>
+            <h2 class="large-heading" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('info_main_title'); ?></h2>
+            <p class="medium-heading mb-0" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('info_main_caption'); ?></p>
           </div>
           <div class="info-inner-con bg-white position-relative d-flex align-items-center justify-content-between" data-aos="fade-up" data-aos-duration="600">
             <div class="round-ball"></div>
@@ -180,19 +195,17 @@
             </div>
             <div class="info-inner-right">
               <div class="info-inner-heading">
-                <span class="small-heading d-inline-block">users</span>
-                <h4 class="large-heading mb-0">
-                  Perfect for teams of any size -as many users as you need
-                </h4>
+                <span class="small-heading d-inline-block"><?php echo get_field('user_small_heading'); ?></span>
+                <h4 class="large-heading mb-0"><?php echo get_field('user_main_title'); ?></h4>
               </div>
               <div class="account-info  d-flex align-items-center  justify-content-between">
                 <div>
-                  <span class="d-block primary-color font-blod">Free account </span>
-                  <small class="d-block font-blod color-66d1b8">5 users </small>
+                  <span class="d-block primary-color font-blod"><?php echo get_field('user_account_title'); ?></span>
+                  <small class="d-block font-blod color-66d1b8"><?php echo get_field('user_account_value'); ?></small>
                 </div>
                 <div>
-                  <span class="d-block primary-color font-blod">Enterprise account</span>
-                  <small class="d-block font-blod color-66d1b8">Unlimited</small>
+                  <span class="d-block primary-color font-blod"><?php echo get_field('user_enterprise_account_title'); ?></span>
+                  <small class="d-block font-blod color-66d1b8"><?php echo get_field('user_enterprise_account_value'); ?></small>
                 </div>
               </div>
             </div>
@@ -204,24 +217,21 @@
             <div class="col-md-6 col-sm-8 col-12 d-flex">
               <div class="info-items bg-white">
                 <div class="info-inner-heading">
-                  <span class="small-heading d-inline-block">storage</span>
-                  <h4 class="large-heading mb-0">
-                    Keep all your files in one <br>
-                    place with flexible storage
-                  </h4>
+                  <span class="small-heading d-inline-block"><?php echo get_field('user_storage_small_heading'); ?></span>
+                  <h4 class="large-heading mb-0"><?php echo get_field('user_storage_main_title'); ?></h4>
                 </div>
                 <div class="account-info d-flex align-items-center  justify-content-between">
                   <div>
-                    <span class="d-block primary-color font-blod">Free account  </span>
-                    <small class="d-block font-blod color-66d1b8">20gb</small>
+                    <span class="d-block primary-color font-blod"><?php echo get_field('user_storage_free_title'); ?></span>
+                    <small class="d-block font-blod color-66d1b8"><?php echo get_field('user_storage_free_value'); ?></small>
                   </div>
                   <div>
-                    <span class="d-block primary-color font-blod">Enterprise account</span>
-                    <small class="d-block font-blod color-66d1b8">Unlimited</small>
+                    <span class="d-block primary-color font-blod"><?php echo get_field('user_storage_enterprise_title'); ?></span>
+                    <small class="d-block font-blod color-66d1b8"><?php echo get_field('user_storage_enterprise_value'); ?></small>
                   </div>
                 </div>
                 <figure class="mb-0">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/download-img.png" alt="download-img">
+                  <img src="<?php echo get_field('user_storage_image'); ?>" alt="download-img">
                 </figure>
                 <div class="term-small-round"></div>
                 <div class="term-medium-round"></div>
@@ -230,23 +240,21 @@
             <div class="col-md-6 col-sm-8 col-12 d-flex">
               <div class="info-items bg-white info-items2">
                 <div class="info-inner-heading">
-                  <span class="small-heading d-inline-block">file sharing</span>
-                  <h4 class="large-heading mb-0">
-                    Hassle free file sharing with <br>with unlimited file sizes
-                  </h4>
+                  <span class="small-heading d-inline-block"><?php echo get_field('file_sharing_small_heading'); ?></span>
+                  <h4 class="large-heading mb-0"><?php echo get_field('file_sharing_main_title'); ?></h4>
                 </div>
                 <div class="account-info d-flex align-items-center  justify-content-between">
                   <div>
-                    <span class="d-block primary-color font-blod">Free account  </span>
-                    <small class="d-block font-blod color-66d1b8">10gb</small>
+                    <span class="d-block primary-color font-blod"><?php echo get_field('file_sharing_free_title'); ?> </span>
+                    <small class="d-block font-blod color-66d1b8"><?php echo get_field('file_sharing_free_value'); ?></small>
                   </div>
                   <div>
-                    <span class="d-block primary-color font-blod">Enterprise account</span>
-                    <small class="d-block font-blod color-66d1b8">Unlimited</small>
+                    <span class="d-block primary-color font-blod"><?php echo get_field('file_sharing_enterprise_title'); ?></span>
+                    <small class="d-block font-blod color-66d1b8"><?php echo get_field('file_sharing_enterprise_value'); ?></small>
                   </div>
                 </div>
                 <figure class="mb-0">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/download-img2.png" alt="download-img">
+                  <img src="<?php echo get_field('file_sharing_image'); ?>" alt="download-img">
                 </figure>
                 <div class="term2-small-round"></div>
                 <div class="term2-medium-round"></div>
@@ -257,8 +265,8 @@
         </div>
         <div class="pricing-table-con position-relative w-100 float-left d-md-flex align-items-center justify-content-between" data-aos="fade-up" data-aos-duration="600">
           <div class="pricing-table-title">
-            <span class="small-heading d-inline-block">pricing</span>
-            <h3 class="large-heading mb-md-0">MightySighty grows <br> as your business grows</h3>
+            <span class="small-heading d-inline-block"><?php echo get_field('pricing_small_heading'); ?></span>
+            <h3 class="large-heading mb-md-0"><?php echo get_field('pricing_main_title'); ?></h3>
           </div>
           <div class="pricing-table d-sm-flex">
             <ul class="list-unstyled mb-0 pricing-table-list">
@@ -315,22 +323,15 @@
               <div class="text-medium-round"></div>
               <div class="text-large-round"></div>
               <figure class="mb-0" data-aos="fade-up" data-aos-duration="600">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/text-img-img.png" alt="text-img">
+                <img src="<?php echo get_field('accessible_image'); ?>" alt="text-img">
               </figure>
             </div>
           </div>
           <div class="col-lg-7">
               <div class="section-heading ml-auto mr-auto">
-                <span class="small-heading d-inline-block" data-aos="fade-up" data-aos-duration="600">ACCESSIBLE</span>
-                <h2 class="large-heading" data-aos="fade-up" data-aos-duration="600">
-                  Find anything, anywhere
-                </h2>
-                <p class="medium-heading mb-0" data-aos="fade-up" data-aos-duration="600">
-                  We understand that people and businesses like to work in 
-                  different ways and have different needs when it comes to
-                  exploring their files. As a result we have have created 
-                  options to support everyone.
-                </p>
+                <span class="small-heading d-inline-block" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('accessible_small_heading'); ?></span>
+                <h2 class="large-heading" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('accessible_main_title'); ?></h2>
+                <p class="medium-heading mb-0" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('accessible_caption'); ?></p>
               </div>
           </div>
 
@@ -344,11 +345,11 @@
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-0 order-2">
           <div class="section-heading">
-            <span class="small-heading d-inline-block" data-aos="fade-up" data-aos-duration="600">interface</span>
-            <h2 class="large-heading" data-aos="fade-up" data-aos-duration="600">Very user friendly</h2>
-            <p class="medium-heading" data-aos="fade-up" data-aos-duration="600">We understand that people and businesses like to work in different ways and have different needs when it comes to exploring their files. As a result we have have created options to support everyone.</p>
+            <span class="small-heading d-inline-block" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('interface_small_heading'); ?></span>
+            <h2 class="large-heading" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('interface_main_title'); ?></h2>
+            <p class="medium-heading" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('interface_caption'); ?></p>
             <div class="generic-btn" data-aos="fade-up" data-aos-duration="600">
-              <a href="#">Get started</a>
+              <a href="<?php echo get_field('interface_blue_btn_link'); ?>"><?php echo get_field('interface_blue_btn_text'); ?></a>
           </div>
           </div>
         </div>
@@ -393,8 +394,8 @@
   <section class="solution-sec float-left w-100">
     <div class="wrapper">
       <div class="section-heading text-center ml-auto mr-auto">
-        <span class="small-heading d-inline-block" data-aos="fade-up" data-aos-duration="600">COMMON QUESTIONS</span>
-        <h2 class="large-heading" data-aos="fade-up" data-aos-duration="600">Is it the right solution for my business?</h2>
+        <span class="small-heading d-inline-block" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('solution_small_heading'); ?></span>
+        <h2 class="large-heading" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('solution_main_title'); ?></h2>
       </div>
       <div class="solution-boxes">
         <ul class="mb-0 list-unstyled">
@@ -452,7 +453,7 @@
   <section class="testimonial-sec text-center float-left w-100">
     <div class="wrapper">
       <div class="testiminial-heading">
-        <h5 class="small-heading" data-aos="fade-up" data-aos-duration="600">what our customers have to say</span>
+        <h5 class="small-heading" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('testimonial_title'); ?></span>
       </div>
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -514,12 +515,10 @@
     <div class="separator-top"></div>
     <div class="wrapper">
       <div class="cta-content">
-        <h3 class="font-extarablod text-white" data-aos="fade-up" data-aos-duration="600">
-          Ready to simplify your asset managment?
-        </h3>
+        <h3 class="font-extarablod text-white" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('managment_title'); ?></h3>
         <div class="secondary-btn cta-buttons">
-          <a href="#" class="font-blod" data-aos="fade-up" data-aos-duration="600">Create your FREE account</a>
-          <a href="#" class="font-blod" data-aos="fade-up" data-aos-duration="600">Book a demo</a>
+          <a href="<?php echo get_field('managment_account_btn_link'); ?>" class="font-blod" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('managment_account_btn_text'); ?></a>
+          <a href="<?php echo get_field('managment_demo_btn_link'); ?>" class="font-blod" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('managment_demo_btn_text'); ?></a>
         </div>
       </div>
     </div>
