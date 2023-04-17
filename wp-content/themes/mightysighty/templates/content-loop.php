@@ -293,15 +293,11 @@
                 // Do something...
             ?>
             <div class="pricing-table-item">
-
-
               <h4 class="font-extarablod primary-color"><?php echo  $plan_name;  ?></h4>
-               
               <ul class="list-unstyled mb-0">
               <?php
                 // Check rows existexists.
                 if( have_rows('plans_details') ):
-
                     // Loop through rows.
                     while( have_rows('plans_details') ) : the_row();
                     // Load sub field value.
@@ -334,6 +330,7 @@
               <div class="pricing-btn">
                 <a href="<?php echo $transparent_button_url;  ?>"><?php echo $transparent_button_text; ?></a>
               </div>
+            </div>
               <?php 
             // End loop.
             endwhile;
@@ -403,25 +400,33 @@
               <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"><i class="fas fa-th-large"></i> File view</a>
               <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><i class="fas fa-map-marker-alt"></i> Map view</a>
             </div>
+
+            <?php 
+            $tab_folder_image = get_field('tab_folder_image'); 
+            $tab_list_view_image = get_field('tab_list_view_image');
+            $tab_file_view_image = get_field('tab_file_view_image');
+            $tab_map_view_image = get_field('tab_map_view_image'); ?>
+            
+            ?>
             <div class="tab-content" id="v-pills-tabContent">
               <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                 <figure class="mb-0">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/map-img.png" alt="map-img">
+                  <img src="<?php echo $tab_folder_image; ?>" alt="map-img">
                 </figure>
               </div>
               <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                 <figure class="mb-0">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/map-img.png" alt="map-img">
+                  <img src="<?php echo $tab_list_view_image; ?>" alt="map-img">
                 </figure>
               </div>
               <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                 <figure class="mb-0">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/map-img.png" alt="map-img">
+                  <img src="<?php echo $tab_file_view_image; ?>"" alt="map-img">
                 </figure>
               </div>
               <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                 <figure class="mb-0">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/map-img.png" alt="map-img">
+                  <img src="<?php echo $tab_map_view_image; ?>" alt="map-img">
                 </figure>
               </div>
             </div>

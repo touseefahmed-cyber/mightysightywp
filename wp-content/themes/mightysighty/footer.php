@@ -1,3 +1,9 @@
+<?php
+            $footer_copyright_text = get_field('footer_copyright_text', 'option');
+            $footer_email_address = get_field('footer_email_address', 'option');
+            $footer_phone_number = get_field('footer_phone_number', 'option');
+?>
+
 <!--FOOTER SECTION -->
 <section class="float-left w-100 footer-con bg-1d2b5f">
     <div class="wrapper">
@@ -13,19 +19,20 @@
             <a href="#" class="text-white d-inline-block font-medium font-xs">Terms </a>
           </li>
           <li class="text-white text-decoration-none font-xs">
-            Copyright MightySighty Ltd <?php echo date('Y'); ?>
+            <?php echo $footer_copyright_text?> <?php echo date('Y'); ?>
           </li>
         </ul>
 
+      
         <ul class="footer-right-con mb-0">
           <li class="mail-con d-inline-block">
-            <a href="mailto:hello@mightysighty.com" class="text-white font-medium">hello@mightysighty.com</a>
+            <a href="mailto:<?php echo $footer_email_address; ?>" class="text-white font-medium"><?php echo $footer_email_address; ?></a>
           </li>
           <li class="tel-con d-inline-block">
-            <a href="tel:+44 (0)1225 472 920" class="text-white font-medium">+44 (0)1225 472 920</a>
+            <a href="tel:<?php echo $footer_phone_number; ?>" class="text-white font-medium"><?php echo $footer_phone_number; ?></a>
           </li>
           <li class="secondary-btn d-inline-block">
-            <a href="#" class="footer-btn font-medium font-xs">Login</a>
+            <a href="javascript:void(0)" class="footer-btn font-medium font-xs">Login</a>
           </li>
         </ul>
       </div>
