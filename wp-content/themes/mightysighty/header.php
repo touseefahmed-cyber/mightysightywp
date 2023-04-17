@@ -34,21 +34,19 @@
               <span class="navbar-toggler-icon"></span>
               <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav m-auto">
-                <li class="nav-item active pl-lg-0">
-                  <a class="nav-link p-0 font-semibold p-0" href="#">How it helps</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link p-0 font-semibold" href="#">Options</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link p-0 font-semibold" href="#">FAQs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link p-0 font-semibold" href="#">User guide</a>
-                  </li>
-              </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">           
+                <?php
+                    wp_nav_menu( array(
+                        'theme_location'    => 'primary',
+                        'depth'             => 2,
+                        'container'         => false,
+                        'container_class'   => 'collapse navbar-collapse',
+                        'container_id'      => 'bs-example-navbar-collapse-1',
+                        'menu_class'        => 'navbar-nav m-auto',
+                        'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+                        'walker'            => new WP_Bootstrap_Navwalker(),
+                    ) );
+                ?>
               <div class="nav-btn d-flex align-items-center">
                 <div class="login-btn">
                     <a href="#">Login <i class="fas fa-angle-right"></i></a>

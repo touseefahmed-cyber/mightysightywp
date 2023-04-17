@@ -13,7 +13,7 @@
             <a href="#" class="text-white d-inline-block font-medium font-xs">Terms </a>
           </li>
           <li class="text-white text-decoration-none font-xs">
-            Copyright MightySighty Ltd 2021
+            Copyright MightySighty Ltd <?php echo date('Y'); ?>
           </li>
         </ul>
 

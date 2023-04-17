@@ -113,7 +113,7 @@
                 $count = get_row_index();
             // Do something...
         ?>
-            <div class="tab-pane <?php echo $count == '1' ? ' active' : ''; ?>" id="<?php echo $tab_slug; ?>" role="tabpanel" aria-labelledby="<?php echo $tab_slug; ?>-tab">
+            <div class="tab-pane <?php echo $count == '1' ? 'show active' : ''; ?>" id="<?php echo $tab_slug; ?>" role="tabpanel" aria-labelledby="<?php echo $tab_slug; ?>-tab">
               <figure class="mb-0">
                 <img src="<?php echo $tab_image; ?>" alt="">
               </figure>
@@ -278,33 +278,72 @@
               <li>Spaces</li>
               <li>Support</li>
             </ul>
+
+            <?php
+            // Check rows existexists.
+            if( have_rows('pricing_plans') ):
+
+                // Loop through rows.
+                while( have_rows('pricing_plans') ) : the_row();
+                // Load sub field value.
+                    $plan_name = get_sub_field('plan_name');
+                    $transparent_button_text = get_sub_field('transparent_button_text');
+                    $transparent_button_url = get_sub_field('transparent_button_url');
+                    $count = get_row_index();
+                // Do something...
+            ?>
             <div class="pricing-table-item">
-              <h4 class="font-extarablod primary-color">Free Account</h4>
+
+
+              <h4 class="font-extarablod primary-color"><?php echo  $plan_name;  ?></h4>
+               
               <ul class="list-unstyled mb-0">
-                <li data-label="Users">5</li>
-                <li data-label="Storage">20gb</li>
-                <li data-label="Share">Up-to 10gb</li>
-                <li data-label="Branding"><i class="fas fa-times"></i></li>
-                <li data-label="Spaces">1</li>
-                <li data-label="Support">Standard</li>
+              <?php
+                // Check rows existexists.
+                if( have_rows('plans_details') ):
+
+                    // Loop through rows.
+                    while( have_rows('plans_details') ) : the_row();
+                    // Load sub field value.
+                        $users = get_sub_field('users');
+                        $storage = get_sub_field('storage');
+                        $share = get_sub_field('share');
+                        $branding = get_sub_field('branding');
+                        $spaces = get_sub_field('spaces');
+                        $support = get_sub_field('support');
+                        $count = get_row_index();
+                    // Do something...
+                ?>
+                <li data-label="Users"> <?php echo $users; ?></li>
+                <li data-label="Storage"> <?php echo $storage; ?></li>
+                <li data-label="Share"> <?php echo $storage; ?></li>
+                <li data-label="Branding"><i class="fas <?php echo  $branding ? "fa-check" : "fa-times"; ?>"></i></li>
+                <li data-label="Spaces"> <?php echo $spaces; ?></li>
+                <li data-label="Support"> <?php echo $support; ?></li>
+            <?php 
+            // End loop.
+            endwhile;
+            // No value.
+            else :
+                // Do something...
+            endif;
+            ?>
+
               </ul>
+             
               <div class="pricing-btn">
-                <a href="#">FREE</a>
+                <a href="<?php echo $transparent_button_url;  ?>"><?php echo $transparent_button_text; ?></a>
               </div>
-            </div>
-            <div class="pricing-table-item">
-              <h4 class="font-extarablod primary-color">Enterprise</h4>
-              <ul class="list-unstyled mb-0">
-                <li data-label="Users">Unlimited</li>
-                <li data-label="Storage">Unlimited</li>
-                <li data-label="Share">Unlimited</li>
-                <li data-label="Branding"><i class="fas fa-check"></i></li>
-                <li data-label="Spaces">Unlimited</li>
-                <li data-label="Support">Premium</li>
-              </ul>
-              <div class="pricing-btn">
-                <a href="#">Let’s talk</a>
-              </div>
+              <?php 
+            // End loop.
+            endwhile;
+
+            // No value.
+            else :
+                // Do something...
+            endif;
+            ?>
+
             </div>
           </div>
           <div class="price-medium-round"></div>
@@ -400,50 +439,37 @@
       </div>
       <div class="solution-boxes">
         <ul class="mb-0 list-unstyled">
+        <?php
+        // Check rows existexists.
+        if( have_rows('solution_tiles') ):
+
+            // Loop through rows.
+            while( have_rows('solution_tiles') ) : the_row();
+             // Load sub field value.
+                $icon = get_sub_field('icon');
+                $title = get_sub_field('title');
+                $caption = get_sub_field('caption');
+                $count = get_row_index();
+            // Do something...
+        ?>
           <li class="d-inline-block" data-aos="fade-up" data-aos-duration="600">
             <div class="item-heading d-flex align-items-center">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/solution-img1.png" alt="solution-img" class="d-inline-block">
-              <h5 class="d-inline-block font-extarablod primary-color mb-0">100% Security</h5>
+              <img src="<?php echo $icon; ?>" alt="solution-img" class="d-inline-block">
+              <h5 class="d-inline-block font-extarablod primary-color mb-0"><?php echo $title; ?></h5>
             </div>
             <p class="font-medium mb-0">
-              Feel assured that your assets are safe. We use the most advanced Amazon AWS servers with 100% security  guaranteed.
+              <?php echo $caption; ?>
             </p>
           </li>
-          <li class="d-inline-block" data-aos="fade-up" data-aos-duration="600">
-            <div class="item-heading d-flex align-items-center">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/solution-img2.png" alt="solution-img" class="d-inline-block">
-              <h5 class="d-inline-block font-extarablod primary-color mb-0">Your branding</h5>
-            </div>
-            <p class="font-medium mb-0">Sharing assets with third suppliers and clients? Choose your theme colours and logo so you account is always on brand.</p>
-          </li>
-          <li class="d-inline-block" data-aos="fade-up" data-aos-duration="600">
-            <div class="item-heading d-flex align-items-center">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/solution-img3.png" alt="solution-img" class="d-inline-block">
-              <h5 class="d-inline-block font-extarablod primary-color mb-0">24hr Support</h5>
-            </div>
-            <p class="font-medium mb-0">Be rest assured that if you have any issue our team is always at hand to answer your questions and offer support.</p>
-          </li>
-          <li class="d-inline-block" data-aos="fade-up" data-aos-duration="600">
-            <div class="item-heading d-flex align-items-center">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/solution-img4.png" alt="solution-img" class="d-inline-block">
-              <h5 class="d-inline-block font-extarablod primary-color mb-0">Upgrade options</h5>
-            </div>
-            <p class="font-medium mb-0">Cloud based storage means unlimited capacity. Start with a free account and if you need, upgrade to enterprise.</p>
-          </li>
-          <li class="d-inline-block" data-aos="fade-up" data-aos-duration="600">
-            <div class="item-heading d-flex align-items-center">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/solution-img5.png" alt="solution-img" class="d-inline-block">
-              <h5 class="d-inline-block font-extarablod primary-color mb-0">Manage user roles</h5>
-            </div>
-            <p class="font-medium mb-0">With admin capabilities, you can manage  account access and set rules for each user including thrid parties and suppliers.</p>
-          </li>
-          <li class="d-inline-block" data-aos="fade-up" data-aos-duration="600">
-            <div class="item-heading d-flex align-items-center">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/solution-img6.png" alt="solution-img" class="d-inline-block">
-              <h5 class="d-inline-block font-extarablod primary-color mb-0">Multiple accounts</h5>
-            </div>
-            <p class="font-medium mb-0">Have more than one brand? Create multiple account spaces so you can to manage them all independently.</p>
-          </li>
+          <?php 
+            // End loop.
+            endwhile;
+
+            // No value.
+            else :
+                // Do something...
+            endif;
+            ?>
         </ul>
 
       </div>
