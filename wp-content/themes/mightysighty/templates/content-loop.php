@@ -31,12 +31,6 @@
   <!-- LOGO SECTION -->
   <div class="main-logo-sec w-100 float-left">
     <div class="wrapper">
-
-
-
-       
-
-
       <div class="logo-con align-items-center justify-item-center w-100">
       <?php
         // Check rows existexists.
@@ -66,7 +60,7 @@
   </div>
   <!-- LOGO SECTION -->
   <!-- TAB SECTION -->
-  <section class="tab-con float-left w-100 text-center">
+  <section class="tab-con float-left w-100 text-center" id="help">
     <div class="wrapper">
       <div class="tab-con-heading">
         <h2 class="primary-color font-extarablod" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('tab_main_title'); ?></h2>
@@ -87,7 +81,7 @@
             // Do something...
         ?>
         <li class="nav-item">
-          <a class="nav-link <?php echo $count == '1' ? ' active show' : ''; ?>  " id="<?php echo $tab_slug; ?>-tab" data-toggle="tab" href="#store" role="tab" aria-controls="store" aria-selected="true"><?php echo $tab_title; ?></a>
+          <a class="nav-link <?php echo $count == '1' ? 'active' : ''; ?>  " id="<?php echo $tab_slug; ?>-tab" data-toggle="tab" href="#<?php echo $tab_slug; ?>" role="tab" aria-controls="<?php echo $tab_slug; ?>" aria-selected="true"><?php echo $tab_title; ?></a>
         </li>
         <?php 
             // End loop.
@@ -140,7 +134,7 @@
   </section>
   <!-- TAB SECTION -->
   <!--  SECTION -->
-  <section class="info-sec float-left w-100 bg-f6f6f9 position-relative">
+  <section class="info-sec float-left w-100 bg-f6f6f9 position-relative" id="business">
     <div class="separator-top"></div>
     <div class="wrapper2">
         <div class="info-form-con w-100 float-left">
@@ -342,11 +336,11 @@
             ?>
 
             </div>
-          </div>
-          <div class="price-medium-round"></div>
+            <div class="price-medium-round"></div>
           <div class="price-small-round"></div>
+          </div>
+
         </div>
-    </div>
     <div class="separator-bottom"></div>
   </section>
   <!--  SECTION -->
@@ -406,8 +400,6 @@
             $tab_list_view_image = get_field('tab_list_view_image');
             $tab_file_view_image = get_field('tab_file_view_image');
             $tab_map_view_image = get_field('tab_map_view_image'); ?>
-            
-            ?>
             <div class="tab-content" id="v-pills-tabContent">
               <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                 <figure class="mb-0">
@@ -436,7 +428,7 @@
     </div>
   </section>
   <!-- SOLUTION BOXES-->
-  <section class="solution-sec float-left w-100">
+  <section class="solution-sec float-left w-100" id="solution">
     <div class="wrapper">
       <div class="section-heading text-center ml-auto mr-auto">
         <span class="small-heading d-inline-block" data-aos="fade-up" data-aos-duration="600"><?php echo get_field('solution_small_heading'); ?></span>
@@ -504,10 +496,8 @@
             // Do something...
         ?>
           <div class="carousel-item  <?php echo $count == '1' ? 'show active' : ''; ?> ">
-            <div class="testimonial-text">
-              <p class="font-extarablod primary-color" data-aos="fade-up" data-aos-duration="600">
-                “<?php echo $testimonial_slide_text; ?>”
-              </p>
+            <div class="testimonial-text font-extarablod primary-color">
+                <?php echo $testimonial_slide_text; ?>
               <figure class="mb-0" data-aos="fade-up" data-aos-duration="600"><img src="<?php echo $testimonial_slide_logo;?>" alt="logo"></figure>
             </div>
           </div>
@@ -540,7 +530,7 @@
   </section>
   <!--TESTIMONIAL  SECTION -->
   <!--CTA SECTION-->
-  <section class="cta-section position-relative float-left w-100 text-center">
+  <section class="cta-section position-relative float-left w-100 text-center" id="contact">
     <div class="separator-top"></div>
     <div class="wrapper">
       <div class="cta-content">

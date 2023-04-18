@@ -68,6 +68,21 @@ $(document).ready(function() {
     $('.nav-tabs .active').parent().prev('li').find('a').trigger('click');
   });
 });
+$(window).scroll(function(){
+         
+         if ($(window).scrollTop() >= 113) {
+         
+         $('header').addClass('fixed-header');
+         
+         }
+         
+         else {
+         
+         $('header').removeClass('fixed-header');
+         
+         }
+         
+         });
 
 </script>
 </body>

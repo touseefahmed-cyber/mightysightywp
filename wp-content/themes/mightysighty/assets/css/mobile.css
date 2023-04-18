@@ -78,6 +78,10 @@
     
 }
 @media only screen and (max-width: 1199px) {
+    .tab-con .tab-pane img {
+        height: 500px;
+        object-fit: cover;
+    }
     .banner-txt .generic-btn a:first-child {
         padding: 22px 36px;
     }
@@ -259,6 +263,13 @@
     
 }
 @media only screen and (max-width: 991px) {
+    .header-con .navbar-light .navbar-nav .nav-item:first-child {
+        padding-left: 16px;
+        padding-top: 18px;
+    }
+    .tab-con .tab-pane img {
+        height: 400px;
+    }
     .banner-txt .generic-btn a:first-child {
         padding: 18px 24px;
     }
@@ -580,6 +591,9 @@
     }
 }
 @media only screen and (max-width: 767px) {
+    .tab-con .tab-pane img {
+        height: auto;
+    }
     .banner-txt .generic-btn a:first-child {
         padding: 16px 19px;
     }
@@ -783,6 +797,9 @@
     .secondary-btn a {
         padding: 10px 26px;
     }
+    .testimonial-text img {
+        margin-bottom: 15px;
+    }
 }
 @media only screen and (max-width: 575px){
     .footer-con {
@@ -852,7 +869,7 @@
     }
     .tab-con .nav-tabs {
         border-radius: 15px;
-        padding: 11px 12px 9px;
+        padding: 0 12px;
         justify-content: flex-start;
     }
     .banner-txt .generic-btn a {
@@ -890,6 +907,8 @@
     }
     .tab-con .nav-tabs {
         margin: 0 auto 40px;
+        height: auto;
+        padding: 12px;
     }
     .info-form-con .section-heading p br{
         display: none;
@@ -936,7 +955,7 @@
         width: 33%;
     }
     .tab-con .nav-tabs .nav-link.active {
-        padding: 7px 15px 6px 15px;
+        padding: 6px 14px;
     }
     .info-inner-con {
         flex-direction: column;
